@@ -10,5 +10,4 @@ hooks:
       runas: centos
   ApplicationStart:
     - location: scripts/post.sh
-      timeout: 200
       runas: centos
