@@ -1,0 +1,12 @@
+[Unit]
+Description=x22app
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5
+ExecStart=/home/centos/simplereact/public/index.html
+WorkingDirectory=/home/centos/simplereact/
+
+[Install]
+WantedBy=multi-user.target
