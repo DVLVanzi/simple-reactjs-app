@@ -1,8 +1,8 @@
 {
   "name": "simple-reactjs-app",
   "version": "0.1.0",
-  "private": true,
-  "homepage": "https://ec2-18-217-116-212.us-east-2.compute.amazonaws.com/x22",
+  "private": false,
+  "homepage": "localhost",
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.4.1",
