@@ -5,7 +5,7 @@ Description=x22app
 Type=simple
 Restart=always
 RestartSec=5
-ExecStart=/home/centos/simplereact/public/index.html
+ExecStart=/home/centos/simplereact/build/service-worker.js
 WorkingDirectory=/home/centos/simplereact/
 
 [Install]
