@@ -1,28 +1,9 @@
-<!--  Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved. -->
-<!-- SPDX-License-Identifier: Apache-2.0 -->
-
-<!DOCTYPE html>
-<html xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script th:src="|https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js|"></script>
-    <link rel="stylesheet" th:href="|https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css|"/>
-    <link rel="stylesheet" href="../public/css/styles.css" th:href="@{/css/styles.css}" />
-    <link rel="icon" href="../public/img/favicon.ico" th:href="@{/img/favicon.ico}" />
-
-    <title>Simple web page</title>
-</head>
-
-<body>
-<header th:replace="layout :: site-header"/>
-<div class="container">
-
-    <h3>Welcome to the simple example app</h3>
-    <p>Now is: <b th:text="${execInfo.now.time}"></b></p>
-    <p>YOUR TURN TO PERSONALIZE IT<p>
-    
-    <div>
-</body>
+<!doctype html>
+<html>
+  <head>
+    <title>This is the title of the webpage!</title>
+  </head>
+  <body>
+    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
+  </body>
 </html>
