@@ -24,6 +24,7 @@ height: 50%;
   margin:auto;
 
 text-align: center;
+background: linear-gradient(270deg,rgba(20,19,67,0) 0,rgba(20,19,67,.6) 33.85%,rgba(20,19,67,.6) 68.23%,rgba(20,19,67,0) 100%);
 }
 
 #columnProva{
