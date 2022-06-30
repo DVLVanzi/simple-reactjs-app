@@ -17,6 +17,15 @@ resource "aws_s3_bucket" "b" {
   }
 }
 
+resource "aws_s3_bucket" "" {
+  bucket = "my-tf-test-bucket2"
+  acl    = "public-read"
+  tags = {
+    Name        = "My bucket2"
+    Environment = "Test"
+  }
+}
+
 resource "aws_s3_bucket_acl" "example" {
   bucket = aws_s3_bucket.b.id
   acl    = "private"
