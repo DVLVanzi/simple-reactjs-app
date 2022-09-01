@@ -9,9 +9,6 @@ terraform {
   resource "aws_s3_bucket" "example" {
     bucket = "terraform_test_bucket"
     acl    = "private"
-    versioning.mfa_delete = "true"
-    versioning.enabled = "true"
-
     object_lock_configuration {
     object_lock_enabled = "Enabled"
 
@@ -44,6 +41,19 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
       kms_master_key_id = aws_kms_key.mykey.arn
       sse_algorithm     = "aws:kms"
     }
+  }
+}
+
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.example.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+resource "aws_s3_bucket" "test-terraform-mfa-delete" {
+  bucket = aws_s3_bucket.example.id
+  versioning {
+    mfa_delete = true
   }
 }
 
