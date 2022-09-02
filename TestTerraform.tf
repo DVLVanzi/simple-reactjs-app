@@ -13,16 +13,15 @@ provider "aws" {
   region = "us-east-2"
 }
 
+//////////////
+//S3 BUCKETS//
+//////////////
 
-//buckets
-//manca logging
-//versioning
-//encryption
-//mfa delete
-//object lock
+//mfa delete: da abilitare a mano post terraform (serve owner+mfa)
+
 resource "aws_s3_bucket" "example" {
   bucket = "terraform-test-bucket-dvlvanzi"
-  
+
   tags = {
     Name  = "terraformtestbucket"
     Owner = "Vanzi"
@@ -30,12 +29,12 @@ resource "aws_s3_bucket" "example" {
   }
 }
 
-
+//acl
 resource "aws_s3_bucket_acl" "example_bucket_acl" {
   bucket = aws_s3_bucket.example.id
   acl    = "private"
 }
-
+//versioning + mfa delete
 resource "aws_s3_bucket_versioning" "versioning_example" {
   bucket = aws_s3_bucket.example.id
   versioning_configuration {
@@ -43,11 +42,35 @@ resource "aws_s3_bucket_versioning" "versioning_example" {
   }
 }
 
+//LOGGING
+resource "aws_s3_bucket_logging" "example" {
+  bucket = aws_s3_bucket.example.id
+
+  target_bucket = aws_s3_bucket.example.id
+  target_prefix = "log/"
+}
+
+resource "aws_kms_key" "mykey" {
+  description             = "This key is used to encrypt bucket objects"
+  deletion_window_in_days = 10
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
+  bucket = aws_s3_bucket.example.bucket
+
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = aws_kms_key.mykey.arn
+      sse_algorithm     = "aws:kms"
+    }
+  }
+}
+
 //ec2
 
 resource "aws_instance" "app_server" {
-  ami           = "ami-0568773882d492fc8"
-  instance_type = "t2.micro"
+  ami               = "ami-0568773882d492fc8"
+  instance_type     = "t2.micro"
   availability_zone = "us-east-2a"
 
   tags = {
